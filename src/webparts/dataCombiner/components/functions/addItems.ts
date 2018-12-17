@@ -2,7 +2,6 @@ import { logMessage } from "./logMessage";
 import { columnPrefix } from "../constants";
 import { sp } from "@pnp/sp";
 
-
 export function addItems(listName: string, columns: string[], items: Array<any>): Promise<Array<any>> {
     logMessage("adding " + items.length + " items.  This can take a while if there are a lot of items.");
 

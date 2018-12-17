@@ -1,7 +1,6 @@
 import { logMessage } from "./logMessage";
 import { sp } from "@pnp/sp";
 
-
 export function addCreatedDetails(items: Array<any>): Promise<any> {
 
     items.forEach(item => item.CreatedDate = item.Created);
