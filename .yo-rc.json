@@ -1,0 +1,8 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "version": "1.4.0",
+    "libraryName": "data-combiner",
+    "libraryId": "52057525-9c27-4a15-bbd4-66da47b34667",
+    "environment": "spo"
+  }
+}
