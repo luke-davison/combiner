@@ -1,6 +1,7 @@
+import { sp } from "@pnp/sp";
+
 import { logMessage } from "./logMessage";
 import { columnPrefix } from "../constants";
-import { sp } from "@pnp/sp";
 
 export function addItems(listName: string, columns: string[], items: Array<any>): Promise<Array<any>> {
     logMessage("adding " + items.length + " items.  This can take a while if there are a lot of items.");
@@ -17,10 +18,8 @@ export function addItems(listName: string, columns: string[], items: Array<any>)
             }
         });
     promises.push(sp.web.lists.getByTitle(listName).items.add(itemProperties)
-        .catch((error) => {
-            console.log(error);
-            console.log(itemProperties);
-        }));
+        .catch(error => console.log("error adding new item", error))
+        );
     });
     return Promise.all(promises);
 }

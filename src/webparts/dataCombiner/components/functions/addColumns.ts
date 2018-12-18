@@ -1,8 +1,9 @@
 import { sp } from "@pnp/sp";
-import { logMessage } from "./logMessage";
+
 import { columnPrefix } from "../constants";
 import { delay } from "./delay";
 import { identifyColumns } from "./identifyColumns";
+import { logMessage } from "./logMessage";
 
 export function addColumns(listName: string, items: Array<any>): Promise<Array<any>> {
     return sp.web.lists
@@ -28,7 +29,11 @@ export function addColumns(listName: string, items: Array<any>): Promise<Array<a
             return Promise.all(promises).then(() => {
                 return sp.web.lists.getByTitle(listName).items.getById(result.data.Id)
                     .delete()
-                    .then(() => columns);
+                    .then(() => columns)
+                    .catch(error => {
+                        console.log("error deleting dummy item", error);
+                        return columns;
+                    });;
             });
     });
 }

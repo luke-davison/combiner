@@ -12,6 +12,7 @@ export function addWebTitles(item: any, site: ISite): Promise<any> {
         .then((web: {Title: string}) => {
             item.SiteTitle = web.Title;
         })
+        .catch(error => console.log("error getting web title", error))
     );
     promises.push(site.parent.web
         .select("Title")
@@ -19,6 +20,7 @@ export function addWebTitles(item: any, site: ISite): Promise<any> {
         .then((web: {Title: string}) => {
             item.ParentSite = web.Title;
         })
+        .catch(error => console.log("error getting parent title", error))
     );
 
     return Promise.all(promises);

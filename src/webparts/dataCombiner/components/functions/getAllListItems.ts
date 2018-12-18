@@ -1,5 +1,5 @@
-import { ISite } from "../classes/ISite";
 import { state } from "../classes/DataCombinerState";
+import { ISite } from "../classes/ISite";
 import { addWebTitles } from "./addWebTitles";
 
 export function getAllListItems(): Promise<any[]> {
@@ -17,6 +17,7 @@ export function getAllListItems(): Promise<any[]> {
                     promises.push(addWebTitles(item, site));
                 });
             })
+            .catch((error) => console.log("error getting all list items", error))
 		);
     });
     return Promise.all(promises).then(() => listItems);

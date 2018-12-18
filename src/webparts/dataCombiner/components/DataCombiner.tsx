@@ -6,21 +6,27 @@ import styles from "./DataCombiner.module.scss";
 
 import { state } from "./classes/DataCombinerState";
 import { IList } from "./classes/IList";
-import { getListNames } from "./functions/getListNames";
-import { createList } from "./functions/createList";
-import { getAllListItems } from "./functions/getAllListItems";
-import { addCreatedDetails } from "./functions/addCreatedDetails";
-import { addColumns } from "./functions/addColumns";
 import { listPrefix } from "./constants";
 import { addItems } from "./functions/addItems";
+import { addColumns } from "./functions/addColumns";
+import { addCreatedDetails } from "./functions/addCreatedDetails";
+import { createList } from "./functions/createList";
+import { getAllListItems } from "./functions/getAllListItems";
+import { getListNames } from "./functions/getListNames";
 import { logMessage } from "./functions/logMessage";
+import { sortListNames } from "./functions/sortListNames";
 
 @observer
 export default class DataCombiner extends React.Component<{}, {}> {
 
   public componentDidMount(): void {
     getListNames()
-      .then(() => state.loading = false);
+      .then(() => {
+        sortListNames();
+        state.loading = false;
+        state.lists = state.lists2;
+      })
+      .catch((error) => console.log("uncaught error", error));
   }
 
   public render(): React.ReactElement<{}> {

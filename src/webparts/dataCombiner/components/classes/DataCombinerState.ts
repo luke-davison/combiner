@@ -7,6 +7,8 @@ export class DataCombinerState {
     @observable public loading: boolean = true;
     @observable public messages: string[] = [];
     @observable public selected?: IList;
+    
+    public lists2: IList[] = [];
 }
 
 export const state: DataCombinerState = new DataCombinerState();
